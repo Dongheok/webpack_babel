@@ -1,3 +1,4 @@
+// 웹팩 설정
 const path = require('path');
 const webpack = require('webpack');
 
@@ -9,7 +10,7 @@ module.exports = {
    // process.env.NODE_ENV
    mode: 'development',
    entry: {
-      main: './app.js',
+      main: './src/app.js',
    },
    output: {
       path: path.resolve('./dist'),
@@ -74,12 +75,12 @@ module.exports = {
                ? {
                     // 공백제거
                     collapseWhitespace: true,
-                    // 주석풀기
+                    // 주석제거
                     removeComments: true,
                  }
                : false,
       }),
-      // CleanWebpackPlugin : 아무것도 없는 js파일 제거
+      // CleanWebpackPlugin : 빌드 이전 결과물을 제거하는 플러그인이다.
       new CleanWebpackPlugin({}),
       // MiniCssExtractPlugin : 번들된 자바스크립트 코드에서 css파일만 따로 뽑아 css파일을 만들어 html head에 참조시킨다
       ...(process.env.NODE_ENV === 'production'
