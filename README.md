@@ -16,5 +16,3 @@
 -  3-webpack/1-dev-server: 웹팩 개발 서버 실습
 -  3-webpack/2-hot: 웹팩 핫로딩 실습
 -  3-webpack/3-optimazation: 웹팩 최적화 실습
--
--  master: 최종 결과물
