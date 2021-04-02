@@ -2,8 +2,6 @@
 
 사용언어 : Javascript, Node.js
 
-<br />
-
 ### 폴더 구성
 
 -  0-test: 웹팩/바벨 코드 테스트
