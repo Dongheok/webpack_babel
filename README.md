@@ -1,6 +1,6 @@
 ### 웹팩과 바벨 공부자료입니다.
 
-사용언어 : Javascript, Node.js
+사용언어 : Javascript, Node.js, Webpack, Babel
 
 ### 폴더 구성
 
