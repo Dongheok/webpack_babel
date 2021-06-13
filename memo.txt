@@ -1,0 +1,14 @@
+[웹팩]
+1. npm init : package.json 설치 후
+2. 개발하면서 자바스크립트 모듈로 연결해서 쓰기
+3. npm으로 webpack, webpack-cli 설치
+(webpack : 모듈로 연결된 자바스크립트 파일을 합치는 것, 그 결과물을 번들이라고함)
+4.entry 지정
+(entry : app.js처럼 모듈이 시작되는 부분을 말함)
+(output : webpack의 결과물을 저장하는 곳)
+5.webpack.config.js파일을 만들고 module.exports를 작성한다.(mode, entry, output등)
+6.package.json.scripts.build에 'webpack'을 값으로 넣고 npm run build를 하면 웹펙이 실행된다.
+[로더]
+1.my-webpack-loader파일을 만든다.(로더를 만들어 쓸 때)
+2.webpack.config.js에서 module.exports안에 module을 만들고 rules을 작성한다. (rules는 객체 배열이며, test와use프로퍼티를 가지고 있다.)
+3.
