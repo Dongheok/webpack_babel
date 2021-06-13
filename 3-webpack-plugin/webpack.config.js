@@ -1,13 +1,8 @@
 const path = require('path');
-
-// define-plugin 관련
 const webpack = require('webpack');
-const childProcess = require('child_process');
-// html-webpack-plugin 관련 (버젼 5 이상쓰면 안됨)
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// clean-webpack-plugin 관련 (빌드할때마다 날리고 새로 받는 플러그인)
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-// mini-css-extract-plugin 관련 (자바스크립트에서 css를 다 뽑아서 합치는 플러그인)
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -16,8 +11,8 @@ module.exports = {
       main: './src/app.js',
    },
    output: {
-      path: path.resolve('./dist'),
       filename: '[name].js',
+      path: path.resolve('./dist'),
    },
    module: {
       rules: [
@@ -26,40 +21,26 @@ module.exports = {
             use: [process.env.NODE_ENV === 'production' ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader'],
          },
          {
-            test: /\.(png|jpg|gif|svg)$/,
+            test: /\.(png|jpg|svg|gif)$/,
             loader: 'url-loader',
             options: {
                name: '[name].[ext]?[hash]',
-               limit: 20000, //20kb미만은 url-loader를 이용해 자바스크립트 문자열로 변환, 그 이상은 file-loader로 output에 파일을 복사
+               limit: 10000, // 10Kb
             },
          },
       ],
    },
    plugins: [
-      // 웹팩된 번들파일 맨 위에 원하는걸 추가할 수 있는 플러그인
       new webpack.BannerPlugin({
          banner: `
-            Build Date : ${new Date().toLocaleDateString()}
-            Commit Version : ${childProcess.execSync('git rev-parse --short HEAD')}
-            Author : ${childProcess.execSync('git config user.name')}
-         `,
-      }),
-      // 환경변수관련된 플러그인
-      new webpack.DefinePlugin({
-         TWO: '1+1',
-         'api.domain': JSON.stringify('http://dev.api.domain.com'),
+        Build Date ${new Date().toLocaleDateString()}
+      `,
       }),
       new HtmlWebpackPlugin({
          template: './src/index.html',
          templateParameters: {
             env: process.env.NODE_ENV === 'development' ? '(개발용)' : '',
          },
-         minify: process.env.NODE_ENV
-            ? {
-                 collapseWhitespace: true,
-                 removeComments: true,
-              }
-            : false,
       }),
       new CleanWebpackPlugin({}),
       ...(process.env.NODE_ENV === 'production'
@@ -70,4 +51,11 @@ module.exports = {
            ]
          : []),
    ],
+   /**
+    * TODO: 아래 플러그인을 추가해서 번들 결과를 만들어 보세요.
+    * 1. BannerPlugin: 결과물에 빌드 시간을 출력하세요.
+    * 2. HtmlWebpackPlugin: 동적으로 html 파일을 생성하세요.
+    * 3. CleanWebpackPlugin: 빌드 전에 아웃풋 폴더를 깨끗히 정리하세요.
+    * 4. MiniCssExtractPlugin: 모듈에서 css 파일을 분리하세요.
+    */
 };
