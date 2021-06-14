@@ -13,7 +13,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
    mode: 'development',
    entry: {
-      main: './src/app.js',
+      main: './app.js',
    },
    output: {
       path: path.resolve('./dist'),
@@ -32,6 +32,11 @@ module.exports = {
                name: '[name].[ext]?[hash]',
                limit: 20000, //20kb미만은 url-loader를 이용해 자바스크립트 문자열로 변환, 그 이상은 file-loader로 output에 파일을 복사
             },
+         },
+         {
+            test: /\.js$/,
+            loader: 'babel-loader',
+            exclude: /node_modules/,
          },
       ],
    },
