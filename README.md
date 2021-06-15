@@ -4,7 +4,6 @@
 
 ### 폴더 구성
 
--  0-test: 웹팩/바벨 코드 테스트
 -  1-webpack-entry: 웹팩 엔트리/아웃풋 실습
 -  2-webpack-loader: 웹팩 로더 실습
 -  3-webpack-plugin: 웹팩 플러그인 실습
